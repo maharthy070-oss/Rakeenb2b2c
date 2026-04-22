@@ -1,0 +1,135 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Mashaer Sector Readiness Dashboard — Dark RTL design system.
+ * HSL channel tokens are kept (e.g. "220 27% 8%") so the legacy
+ * `hsl(var(--token))` references inside components keep working.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-glow: hsl(var(--primary-glow));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+  --color-sana: hsl(var(--sana));
+  --color-rakeen: hsl(var(--rakeen));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+:root {
+  --background: 220 27% 8%;
+  --foreground: 210 40% 98%;
+  --card: 220 24% 12%;
+  --card-foreground: 210 40% 98%;
+  --popover: 220 24% 12%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --primary-glow: 217 91% 70%;
+  --secondary: 217 19% 20%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 19% 18%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 40% 98%;
+  --success: 160 84% 39%;
+  --success-foreground: 210 40% 98%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 220 27% 8%;
+  --info: 217 91% 60%;
+  --info-foreground: 210 40% 98%;
+  --sana: 0 72% 45%;
+  --rakeen: 25 45% 40%;
+  --border: 217 19% 22%;
+  --input: 217 19% 22%;
+  --ring: 217 91% 60%;
+  --radius: 0.875rem;
+
+  --gradient-card: linear-gradient(135deg, hsl(217 19% 16%) 0%, hsl(220 27% 10%) 100%);
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+  --gradient-success: linear-gradient(135deg, hsl(160 84% 25%) 0%, hsl(160 84% 35%) 100%);
+  --gradient-danger: linear-gradient(135deg, hsl(0 72% 30%) 0%, hsl(0 72% 40%) 100%);
+  --gradient-warning: linear-gradient(135deg, hsl(38 92% 35%) 0%, hsl(38 92% 45%) 100%);
+  --gradient-info: linear-gradient(135deg, hsl(217 91% 35%) 0%, hsl(217 91% 45%) 100%);
+
+  --shadow-card: 0 4px 20px -4px hsl(220 27% 4% / 0.5);
+  --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.25);
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    direction: rtl;
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .metric-card {
+    border-radius: 1rem;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+  .insight-success {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-success);
+    color: white;
+    border: 1px solid hsl(var(--success) / 0.4);
+  }
+  .insight-danger {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-danger);
+    color: white;
+    border: 1px solid hsl(var(--destructive) / 0.4);
+  }
+  .insight-info {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-info);
+    color: white;
+    border: 1px solid hsl(var(--info) / 0.4);
+  }
+}
