@@ -13,6 +13,8 @@ export interface Inspection {
   overallScore: number;
   missingItems: { name: string; score: number }[];
   checklist: { name: string; score: number | null; raw: string | number | null }[];
+  centerNumber: string;   // from sheet column AL ("رقم المركز")
+  centerHead: string;     // from sheet column AM ("اسم رئيس المركز")
 }
 
 const COL_TIMESTAMP = "طابع زمني";
@@ -23,6 +25,8 @@ const COL_COMPANY = "شركة";
 const COL_SITE_1 = "رقم الشاخص";
 const COL_SITE_2 = "رقم الشاخص  2";
 const COL_NOTES_PREFIX = "ملاحظات المراقب";
+const COL_CENTER_NUMBER = "رقم المركز";
+const COL_CENTER_HEAD = "اسم رئيس المركز";
 
 function normalize(v: unknown): string {
   if (v === null || v === undefined) return "";
@@ -142,11 +146,20 @@ export function loadInspections(
   );
   const colCompany = findHeader(headers, COL_COMPANY);
   const colNotes = findHeaderStartingWith(headers, COL_NOTES_PREFIX);
+  const colCenterNumber = findHeader(headers, COL_CENTER_NUMBER);
+  const colCenterHead = findHeader(headers, COL_CENTER_HEAD);
 
   const reservedCols = new Set<string>(
-    [colTimestamp, colAssistant, colCompany, colNotes, ...supervisorCols, ...siteCols].filter(
-      Boolean
-    ) as string[]
+    [
+      colTimestamp,
+      colAssistant,
+      colCompany,
+      colNotes,
+      colCenterNumber,
+      colCenterHead,
+      ...supervisorCols,
+      ...siteCols,
+    ].filter(Boolean) as string[]
   );
   const checklistCols = headers.filter((h) => h && !reservedCols.has(h));
 
@@ -202,6 +215,8 @@ export function loadInspections(
         overallScore: overall,
         missingItems: missing,
         checklist,
+        centerNumber: normalize(colCenterNumber ? row[colCenterNumber] : ""),
+        centerHead: normalize(colCenterHead ? row[colCenterHead] : ""),
       } satisfies Inspection;
     })
     // Drop fully-empty rows (no timestamp AND no site)

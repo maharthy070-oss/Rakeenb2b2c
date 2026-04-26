@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mashaer Sector Readiness Dashboard — Dark RTL design system. */
+
+@layer base {
+  :root {
+    --background: 220 27% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 24% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 24% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 217 91% 70%;
+
+    --secondary: 217 19% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 19% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 27% 8%;
+
+    --info: 217 91% 60%;
+    --info-foreground: 210 40% 98%;
+
+    --sana: 0 72% 45%;
+    --rakeen: 25 45% 40%;
+
+    --border: 217 19% 22%;
+    --input: 217 19% 22%;
+    --ring: 217 91% 60%;
+
+    --chart-1: 217 91% 60%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 0 72% 51%;
+    --chart-5: 280 70% 60%;
+
+    --radius: 0.875rem;
+
+    --gradient-card: linear-gradient(135deg, hsl(217 19% 16%) 0%, hsl(220 27% 10%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 91% 70%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(160 84% 25%) 0%, hsl(160 84% 35%) 100%);
+    --gradient-danger: linear-gradient(135deg, hsl(0 72% 30%) 0%, hsl(0 72% 40%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(38 92% 35%) 0%, hsl(38 92% 45%) 100%);
+    --gradient-info: linear-gradient(135deg, hsl(217 91% 35%) 0%, hsl(217 91% 45%) 100%);
+
+    --shadow-card: 0 4px 20px -4px hsl(220 27% 4% / 0.5);
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.25);
+
+    --sidebar-background: 220 24% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217 19% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 19% 22%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    /* Dark-only design — same palette */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    direction: rtl;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .metric-card {
+    border-radius: 1rem;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+  .insight-success {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-success);
+    color: hsl(var(--success-foreground));
+    border: 1px solid hsl(var(--success) / 0.4);
+  }
+  .insight-danger {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-danger);
+    color: hsl(var(--destructive-foreground));
+    border: 1px solid hsl(var(--destructive) / 0.4);
+  }
+  .insight-info {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--gradient-info);
+    color: hsl(var(--info-foreground));
+    border: 1px solid hsl(var(--info) / 0.4);
+  }
+}

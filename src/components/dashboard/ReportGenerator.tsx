@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Inspection, latestPerSite } from "@/lib/inspections";
 import { getSiteMeta } from "@/lib/siteMetadata";
 
@@ -9,14 +9,21 @@ import sanaLogo from "@/assets/sana-logo.png";
 
 interface Props {
   inspections: Inspection[];
+  companyFilter?: "ركين" | "سنا";
+  trigger?: React.ReactNode;
+  autoOpen?: boolean;
+  onDone?: () => void;
 }
 
-export function ReportGenerator({ inspections }: Props) {
+export function ReportGenerator({ inspections, companyFilter, trigger, autoOpen, onDone }: Props) {
   const [generating, setGenerating] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
   const sites = latestPerSite(inspections).filter(
-    (s) => s.siteId && s.siteId !== "غير معرف"
+    (s) =>
+      s.siteId &&
+      s.siteId !== "غير معرف" &&
+      (!companyFilter || s.company === companyFilter)
   );
 
   async function handleGenerate() {
@@ -55,29 +62,43 @@ export function ReportGenerator({ inspections }: Props) {
         pdf.addImage(img, "JPEG", margin, margin, imgW, finalH);
       }
 
-      pdf.save(`تقرير-جاهزية-المخيمات-${new Date().toLocaleDateString("ar-SA")}.pdf`);
+      const suffix = companyFilter ? `-${companyFilter}` : "";
+      pdf.save(`تقرير-جاهزية-المخيمات${suffix}-${new Date().toLocaleDateString("ar-SA")}.pdf`);
     } catch (e) {
       console.error(e);
       alert("تعذّر إنشاء التقرير. حاول مجدداً.");
     } finally {
       setGenerating(false);
+      onDone?.();
     }
   }
 
+  // Allow parent (dropdown) to trigger generation programmatically.
+  useEffect(() => {
+    if (autoOpen && !generating && sites.length > 0) {
+      handleGenerate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpen]);
+
   return (
     <>
-      <Button
-        onClick={handleGenerate}
-        disabled={generating || sites.length === 0}
-        className="gap-2"
-      >
-        {generating ? (
-          <Loader2 className="w-4 h-4 animate-spin" />
-        ) : (
-          <FileDown className="w-4 h-4" />
-        )}
-        {generating ? "جاري الإنشاء…" : "تحميل التقرير PDF"}
-      </Button>
+      {trigger !== undefined ? (
+        trigger
+      ) : (
+        <Button
+          onClick={handleGenerate}
+          disabled={generating || sites.length === 0}
+          className="gap-2"
+        >
+          {generating ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <FileDown className="w-4 h-4" />
+          )}
+          {generating ? "جاري الإنشاء…" : "تحميل التقرير PDF"}
+        </Button>
+      )}
 
       {/* Off-screen render target for PDF capture */}
       <div

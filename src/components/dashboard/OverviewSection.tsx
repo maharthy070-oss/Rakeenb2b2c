@@ -115,7 +115,7 @@ export function OverviewSection({ latest, all }: Props) {
                       }}
                       labelStyle={{ color: "var(--primary)" }}
                       itemStyle={{ color: "var(--primary)" }}
-                      formatter={(v: number) => [`${v}%`, "الإنجاز"]}
+                      formatter={(v: any) => [`${v}%`, "الإنجاز"]}
                     />
                     <Bar dataKey="score" radius={[8, 8, 0, 0]}>
                       {subset.map((s, i) => (
@@ -169,7 +169,7 @@ export function OverviewSection({ latest, all }: Props) {
                 }}
                 labelStyle={{ color: "var(--primary)" }}
                 itemStyle={{ color: "var(--primary)" }}
-                formatter={(v: number) => [`${v}%`, "الإنجاز"]}
+                formatter={(v: any) => [`${v}%`, "الإنجاز"]}
               />
               <Legend />
               <Bar dataKey="score" name="نسبة الجاهزية" radius={[8, 8, 0, 0]}>

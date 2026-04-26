@@ -195,7 +195,7 @@ export function SitesPerformanceSection({ aggregates }: Props) {
                 }}
                 labelStyle={{ color: "var(--primary)" }}
                 itemStyle={{ color: "var(--primary)" }}
-                formatter={(v: number) => [`${v}%`, "الأداء"]}
+                formatter={(v: any) => [`${v}%`, "الأداء"]}
               />
               <Bar dataKey="score" radius={[8, 8, 0, 0]}>
                 {aggregates.map((a, i) => (
@@ -224,7 +224,7 @@ export function SitesPerformanceSection({ aggregates }: Props) {
                 }}
                 labelStyle={{ color: "var(--primary)" }}
                 itemStyle={{ color: "var(--primary)" }}
-                formatter={(v: number) => [`${v}%`, "التحسن"]}
+                formatter={(v: any) => [`${v}%`, "التحسن"]}
               />
               <Bar dataKey="change" radius={[8, 8, 0, 0]}>
                 {sortedByImprovement.map((a, i) => (
@@ -305,7 +305,7 @@ export function SitesPerformanceSection({ aggregates }: Props) {
                 }}
                 labelStyle={{ color: "var(--primary)" }}
                 itemStyle={{ color: "var(--primary)" }}
-                formatter={(v: number) => [`${v}%`, ""]}
+                formatter={(v: any) => [`${v}%`, ""]}
               />
               <Legend wrapperStyle={{ fontSize: 12 }} />
               <Bar
@@ -341,7 +341,8 @@ export function SitesPerformanceSection({ aggregates }: Props) {
                 strokeWidth={2}
                 minAngle={6}
                 labelLine={{ stroke: "hsl(var(--muted-foreground))", strokeWidth: 1 }}
-                label={({ cx, cy, midAngle, outerRadius, name, value, percent }) => {
+                label={(props: any) => {
+                  const { cx, cy, midAngle = 0, outerRadius, name, value, percent } = props;
                   const RAD = Math.PI / 180;
                   const r = outerRadius + 18;
                   const x = cx + r * Math.cos(-midAngle * RAD);
@@ -377,7 +378,7 @@ export function SitesPerformanceSection({ aggregates }: Props) {
                 }}
                 labelStyle={{ color: "var(--primary)" }}
                 itemStyle={{ color: "var(--primary)" }}
-                formatter={(v: number, n: string) => [`${v} موقع`, n]}
+                formatter={(v: any, n: any) => [`${v} موقع`, n]}
               />
             </PieChart>
           </ResponsiveContainer>

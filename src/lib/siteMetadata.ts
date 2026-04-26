@@ -59,6 +59,46 @@ export const SITE_METADATA: Record<string, SiteMeta> = {
     category: "د",
     contractor: "حسام مرداد",
   },
+  "5/518": {
+    centerNumber: "116",
+    centerHead: "مروان اسماعيل خالدي",
+    nationality: "الهند",
+    pilgrimsCount: 0,
+    category: "—",
+    contractor: "حسام مرداد",
+  },
+  "7/518": {
+    centerNumber: "117",
+    centerHead: "جميل فؤاد تنكر",
+    nationality: "بنجلاديش",
+    pilgrimsCount: 0,
+    category: "—",
+    contractor: "حسام مرداد",
+  },
+  "12/520": {
+    centerNumber: "117",
+    centerHead: "جميل فؤاد تنكر",
+    nationality: "باكستان",
+    pilgrimsCount: 0,
+    category: "—",
+    contractor: "حسام مرداد",
+  },
+  "14/520": {
+    centerNumber: "117",
+    centerHead: "جميل فؤاد تنكر",
+    nationality: "باكستان",
+    pilgrimsCount: 0,
+    category: "—",
+    contractor: "حسام مرداد",
+  },
+  "5/531": {
+    centerNumber: "118",
+    centerHead: "محمد فاروق عبدالمجيد",
+    nationality: "نيجيريا",
+    pilgrimsCount: 0,
+    category: "—",
+    contractor: "حسام مرداد",
+  },
 };
 
 export function getSiteMeta(siteId: string): SiteMeta {
