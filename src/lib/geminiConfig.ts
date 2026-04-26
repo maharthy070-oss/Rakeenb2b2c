@@ -1,5 +1,6 @@
-// Gemini API key — used directly from the browser as requested.
-// NOTE: Anyone visiting the site can see this key. Restrict it in
-// Google Cloud Console (HTTP referrer) for safety.
-export const GEMINI_API_KEY = "AIzaSyBxUECxoNXqXUnqRJn7eFRTGGUxNilW_zI";
+// This file no longer contains the secret key!
+// The key is now safely stored in Netlify Environment Variables as GAPIKEY.
+
+// We point to your Netlify function instead of the direct Google URL
+export const GEMINI_PROXY_URL = "/.netlify/functions/gemini-proxy";
 export const GEMINI_MODEL = "gemini-2.5-flash";
