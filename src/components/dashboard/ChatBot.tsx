@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import type { Inspection } from "@/lib/inspections";
 import { buildChatContext } from "@/lib/buildChatContext";
-import { GEMINI_API_KEY, GEMINI_MODEL } from "@/lib/geminiConfig";
+import { API_URL, GEMINI_MODEL } from "@/lib/geminiConfig";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
