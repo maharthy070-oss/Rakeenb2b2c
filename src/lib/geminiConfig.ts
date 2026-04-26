@@ -1,6 +1,8 @@
-// This file no longer contains the secret key!
-// The key is now safely stored in Netlify Environment Variables as GAPIKEY.
+// src/lib/geminiConfig.ts
+// This file is now safe. No secret keys are stored here!
 
-// We point to your Netlify function instead of the direct Google URL
-export const GEMINI_PROXY_URL = "/Rakeenb2b2c/src/lib/gemini-proxy.js";
-export const GEMINI_MODEL = "gemini-2.5-flash";
+// The model version you are using
+export const GEMINI_MODEL: string = "gemini-2.5-flash";
+
+// This tells your app to talk to your Netlify "bridge" instead of Google directly.
+export const API_URL: string = "/.netlify/functions/gemini-proxy";
