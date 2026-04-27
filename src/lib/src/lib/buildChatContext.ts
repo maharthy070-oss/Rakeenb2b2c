@@ -1,7 +1,7 @@
 import type { Inspection } from "./inspections";
 import { aggregateBySite } from "./inspections";
 import { getSiteMeta } from "./siteMetadata";
-
+import { GEMINI_API_KEY, GEMINI_MODEL } from "@/lib/geminiConfig";
 /**
  * Build a compact text summary of all inspection data to send as
  * system context to the AI. Keeps token usage bounded.
