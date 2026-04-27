@@ -1,8 +1,8 @@
-// src/lib/geminiConfig.ts
-// This file is now safe. No secret keys are stored here!
+export const GEMINI_API_KEY = import.meta.env.VITE_GAPIKEY || "";
 
-// The model version you are using
-export const GEMINI_MODEL: string = "gemini-2.5-flash";
+console.log("ENV FULL:", import.meta.env);
+console.log("VITE_GAPIKEY:", import.meta.env.VITE_GAPIKEY);
 
-// This tells your app to talk to your Netlify "bridge" instead of Google directly.
-export const API_URL: string = "/.netlify/functions/gemini-proxy";
+if (!GEMINI_API_KEY) {
+  console.error("❌ VITE_GAPIKEY is missing from environment variables");
+}
